@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accent Gaming - Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <nav class="bg-gray-900 shadow-lg border-b-4 border-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo and Links -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center mr-8">
+                        <span class="text-white text-2xl font-black tracking-wider uppercase">Accent <span class="text-blue-500">Gaming</span></span>
+                    </div>
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex space-x-4 items-center">
+                        <button id="nav-home" onclick="showPage('home')" class="nav-link bg-gray-800 text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150 shadow-inner">Home</button>
+                        <button id="nav-weeklymeetups" onclick="showPage('weeklymeetups')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Weekly Meet Ups</button>
+                        <button id="nav-events" onclick="showPage('events')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Events</button>
+                        <button id="nav-bookings" onclick="showPage('bookings')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Table Bookings</button>
+                        <!-- Direct Link to Discord -->
+                        <a href="https://discord.gg/fyRgpEdb" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Discord</a>
+                        <button id="nav-website" onclick="showPage('website')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Website</button>
+                    </div>
+                </div>
+                
+                <!-- Gamer Zone Button -->
+                <div class="flex items-center">
+                    <button id="nav-login" onclick="showPage('login')" class="nav-link flex items-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-bold border border-blue-700 shadow-sm transition transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                        Gamer Zone
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto w-full pb-12">
+        
+        <!-- ================= HOME PAGE ================= -->
+        <div id="home-page" class="page-section animate-fade-in">
+            <!-- Welcoming Hero Banner with Dice Rolling Image -->
+            <div class="relative bg-gray-900 rounded-b-xl shadow-xl overflow-hidden mb-8">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRwGBwC-fXxe1au364wM5Xzg7N3g5cSnD8l4JZTMsBuXgAUWgvCRthoQ4u2kFVf0AI_l0tOs6bf7TATulA" alt="Dice rolling across a green felt table">
+                <div class="relative px-8 py-16 md:py-24 text-center max-w-3xl mx-auto">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Welcome to Accent Gaming</h1>
+                    <p class="text-lg md:text-xl text-gray-300 mb-8">Your local hub for Warhammer, Flesh & Blood, Magic: The Gathering, and Board Games in Dunfermline & Kirkcaldy. Grab a table, roll some dice, and join the community.</p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="showPage('bookings')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded shadow-lg transition transform hover:-translate-y-0.5">Book a Table</button>
+                        <button onclick="showPage('weeklymeetups')" class="bg-gray-100 hover:bg-white text-gray-900 font-bold py-3 px-6 rounded shadow-lg transition transform hover:-translate-y-0.5">Weekly Schedule</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4 sm:px-6 lg:px-8">
+                <!-- Dashboard Widgets -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <h2 class="text-gray-500 text-xs font-bold uppercase tracking-wider flex items-center mb-3">
+                                <span class="bg-blue-100 text-blue-800 p-1 rounded mr-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></span >
+                                Your Next Booking
+                            </h2>
+                            <p id="home-next-booking-type" class="text-xl font-bold text-gray-900">Warhammer 40k</p>
+                            <p id="home-next-booking-details" class="text-gray-600 text-sm mt-1">Table Top - 2 Players</p>
+                            <p id="home-next-booking-datetime" class="text-blue-600 text-sm mt-2 font-semibold">Saturday, 2:00 PM (3 Hours)</p>
+                        </div>
+                        <button onclick="showPage('bookings')" class="mt-5 w-full bg-white hover:bg-gray-50 text-gray-900 font-semibold py-2 px-4 border border-gray-300 rounded shadow-sm transition">
+                            Manage Booking
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <h2 class="text-gray-500 text-xs font-bold uppercase tracking-wider flex items-center mb-3">
+                                <span class="bg-red-100 text-red-800 p-1 rounded mr-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                                </span>
+                                Upcoming Big Event
+                            </h2>
+                            <p class="text-xl font-bold text-gray-900">Store Championship</p>
+                            <p class="text-gray-600 text-sm mt-1">Check the events tab for details.</p>
+                            <p class="text-red-600 text-sm mt-2 font-semibold">Don't miss out!</p>
+                        </div>
+                        <button onclick="showPage('events')" class="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow-sm transition">
+                            See Special Events
+                        </button>
+                    </div>
+
+                    <div class="bg-[#5865F2] rounded-xl shadow-sm border border-[#4752C4] p-6 text-white flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <h2 class="text-indigo-200 text-xs font-bold uppercase tracking-wider flex items-center mb-3">
+                                Community
+                            </h2>
+                            <p class="text-xl font-bold mt-1">Accent Discord</p>
+                            <p class="text-indigo-100 text-sm mt-2 leading-relaxed">Find opponents, share your painted minis, and get the latest store restock updates instantly.</p>
+                        </div>
+                        <a href="https://discord.gg/fyRgpEdb" target="_blank" class="mt-5 w-full block text-center bg-white hover:bg-gray-100 text-[#5865F2] font-bold py-2 px-4 rounded shadow-sm transition">
+                            Join the Chat
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pre-order Widget Container (Full Length) -->
+                <div id="home-preorders-container" class="mt-6 space-y-4">
+                    <!-- Populated by JS -->
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= GAMER ZONE PAGE ================= -->
+        <div id="login-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-16 animate-fade-in">
+            <div class="max-w-5xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Gamer Zone</h1>
+                <p class="text-gray-600 mb-12 text-lg max-w-2xl mx-auto">Welcome! To personalize your dashboard and get connected with the right community, please select your primary gaming interest below.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Table Top Option -->
+                    <button onclick="showPage('tabletoptracker')" class="bg-white rounded-2xl shadow-sm border-2 border-transparent hover:border-blue-500 hover:shadow-xl p-8 flex flex-col items-center transition duration-200 group">
+                        <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Accent Damage Matrix</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Calculate average damage output for Warhammer 40,000, Age of Sigmar, and other D6 systems.</p>
+                    </button>
+
+                    <!-- Card Playing Option -->
+                    <button onclick="showPage('cardtracker')" class="bg-white rounded-2xl shadow-sm border-2 border-transparent hover:border-green-500 hover:shadow-xl p-8 flex flex-col items-center transition duration-200 group">
+                        <div class="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Card Playing</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Magic: The Gathering, Yu-Gi-Oh!, Pokémon TCG, Flesh & Blood, and more.</p>
+                    </button>
+
+                    <!-- Role Playing Option -->
+                    <button class="bg-white rounded-2xl shadow-sm border-2 border-transparent hover:border-purple-500 hover:shadow-xl p-8 flex flex-col items-center transition duration-200 group">
+                        <div class="w-20 h-20 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Role Playing</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Dungeons & Dragons, Pathfinder, Call of Cthulhu, and other tabletop RPGs.</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CARD SCORING TRACKER PAGE ================= -->
+        <div id="cardtracker-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6 px-2 space-y-4 sm:space-y-0">
+                    <div class="flex items-center space-x-3 w-full sm:w-auto">
+                        <span class="text-sm font-bold text-gray-700">Format / System:</span>
+                        <select id="card-system" onchange="updateCardSystem()" class="block w-48 pl-3 pr-8 py-2 text-sm font-bold text-black border-gray-300 border rounded-lg focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white shadow-sm">
+                            <option value="mtg20">Magic (20 Life)</option>
+                            <option value="mtg40">Commander (40 Life)</option>
+                            <option value="ygo">Yu-Gi-Oh! (8000 LP)</option>
+                            <option value="custom">Custom...</option>
+                        </select>
+                        <div id="custom-life-container" class="hidden flex items-center space-x-2">
+                            <input type="number" id="custom-life" value="0" class="text-black w-20 pl-2 py-2 text-sm font-bold border-gray-300 border rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="Start">
+                            <button onclick="applyCustomLife()" class="bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-2 px-3 rounded shadow-sm transition">Set</button>
+                        </div>
+                    </div>
+                    <button onclick="resetCardTracker()" class="text-sm text-red-600 hover:text-red-800 font-bold px-4 py-2 rounded transition hover:bg-red-50 flex items-center border border-transparent hover:border-red-200">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        Reset Game
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <!-- Player 1 -->
+                    <div class="bg-white rounded-2xl shadow-xl border-t-8 border-blue-500 p-8 flex flex-col items-center relative overflow-hidden">
+                        <input type="text" placeholder="Player 1" class="text-2xl font-black text-center border-b-2 border-transparent hover:border-gray-200 focus:border-blue-500 focus:outline-none pb-1 text-gray-900 w-full max-w-xs mb-8 bg-transparent">
+                        <div class="text-center mb-10 w-full">
+                            <span id="card-p1-score" class="text-8xl sm:text-9xl font-black text-black tracking-tighter tabular-nums drop-shadow-sm">20</span>
+                        </div>
+                        <div id="card-p1-controls" class="w-full"></div>
+                    </div>
+                    <!-- Player 2 -->
+                    <div class="bg-white rounded-2xl shadow-xl border-t-8 border-red-500 p-8 flex flex-col items-center relative overflow-hidden">
+                        <input type="text" placeholder="Player 2" class="text-2xl font-black text-center border-b-2 border-transparent hover:border-gray-200 focus:border-red-500 focus:outline-none pb-1 text-gray-900 w-full max-w-xs mb-8 bg-transparent">
+                        <div class="text-center mb-10 w-full">
+                            <span id="card-p2-score" class="text-8xl sm:text-9xl font-black text-black tracking-tighter tabular-nums drop-shadow-sm">20</span>
+                        </div>
+                        <div id="card-p2-controls" class="w-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ACCENT DAMAGE MATRIX CALCULATOR PAGE ================= -->
+        <div id="tabletoptracker-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <div class="max-w-5xl mx-auto">
+                
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Accent Damage Matrix</h1>
+                    <p class="text-gray-600">Enter your weapon profile and target stats to instantly calculate average damage output.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Inputs Section -->
+                    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Weapon & Attacker Profile
+                        </h2>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Attacks (A)</label>
+                                <input type="number" id="mh-attacks" min="1" value="10" oninput="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Skill (BS/WS)</label>
+                                <select id="mh-bs" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                                    <option value="2">2+</option>
+                                    <option value="3" selected>3+</option>
+                                    <option value="4">4+</option>
+                                    <option value="5">5+</option>
+                                    <option value="6">6+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Strength (S)</label>
+                                <input type="number" id="mh-strength" min="1" value="4" oninput="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Armor Pen (AP)</label>
+                                <input type="number" id="mh-ap" max="0" value="-1" oninput="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Damage (D)</label>
+                                <input type="number" id="mh-damage" min="1" value="1" oninput="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                            </div>
+                        </div>
+
+                        <!-- Keywords -->
+                        <div class="bg-gray-50 rounded-xl border border-gray-200 p-4 mb-8">
+                            <h3 class="text-sm font-bold text-gray-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wide">Weapon Abilities</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                                <label class="flex items-center space-x-2 text-sm font-bold text-gray-700">
+                                    <input type="checkbox" id="mh-minus1hit" onchange="calculateMathhammer()" class="w-4 h-4 text-blue-600 rounded">
+                                    <span>-1 to Hit</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-sm font-bold text-gray-700">
+                                    <input type="checkbox" id="mh-lethal" onchange="calculateMathhammer()" class="w-4 h-4 text-blue-600 rounded">
+                                    <span>Lethal Hits</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-sm font-bold text-gray-700">
+                                    <input type="checkbox" id="mh-devastating" onchange="calculateMathhammer()" class="w-4 h-4 text-blue-600 rounded">
+                                    <span>Dev Wounds</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-sm font-bold text-gray-700">
+                                    <input type="checkbox" id="mh-twinlinked" onchange="calculateMathhammer()" class="w-4 h-4 text-blue-600 rounded">
+                                    <span>Twin-Linked</span>
+                                </label>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Sustained Hits</label>
+                                    <select id="mh-sustained" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded shadow-sm py-1 px-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-sm">
+                                        <option value="0">None</option>
+                                        <option value="1">Sustained 1</option>
+                                        <option value="2">Sustained 2</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Anti-X (Target)</label>
+                                    <select id="mh-anti" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded shadow-sm py-1 px-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-sm">
+                                        <option value="7">None</option>
+                                        <option value="2">2+</option>
+                                        <option value="3">3+</option>
+                                        <option value="4">4+</option>
+                                        <option value="5">5+</option>
+                                        <option value="6">6+</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Hit Re-rolls</label>
+                                    <select id="mh-reroll-hits" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded shadow-sm py-1 px-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-sm">
+                                        <option value="none">None</option>
+                                        <option value="ones">1s Only</option>
+                                        <option value="full">Full Re-rolls</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Wound Re-rolls</label>
+                                    <select id="mh-reroll-wounds" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded shadow-sm py-1 px-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-sm">
+                                        <option value="none">None</option>
+                                        <option value="ones">1s Only</option>
+                                        <option value="full">Full Re-rolls</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-end space-x-2">
+                                    <div class="flex-1">
+                                        <label class="block text-xs font-bold text-gray-700 mb-1">Rapid Fire (Bonus Attacks)</label>
+                                        <input type="number" id="mh-rapid-val" min="0" value="0" oninput="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded shadow-sm py-1 px-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-sm">
+                                    </div>
+                                    <label class="flex items-center space-x-1 text-xs font-bold text-gray-700 pb-2">
+                                        <input type="checkbox" id="mh-rapid-active" onchange="calculateMathhammer()" class="w-4 h-4 text-blue-600 rounded">
+                                        <span>Active</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-end space-x-2">
+                                    <div class="flex-1">
+                                        <label class="block text-xs font-bold text-gray-700 mb-1">Melta (Bonus Dmg)</label>
+                                        <input type="number" id="mh-melta-val" min="0" value="0" oninput="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded shadow-sm py-1 px-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-sm">
+                                    </div>
+                                    <label class="flex items-center space-x-1 text-xs font-bold text-gray-700 pb-2">
+                                        <input type="checkbox" id="mh-melta-active" onchange="calculateMathhammer()" class="w-4 h-4 text-blue-600 rounded">
+                                        <span>Active</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            Target Profile
+                        </h2>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Toughness (T)</label>
+                                <input type="number" id="mh-toughness" min="1" value="4" oninput="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Feel No Pain (FNP)</label>
+                                <select id="mh-fnp" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                                    <option value="7" selected>None (-)</option>
+                                    <option value="6">6+</option>
+                                    <option value="5">5+</option>
+                                    <option value="4">4+</option>
+                                    <option value="3">3+</option>
+                                    <option value="2">2+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Armor Save (Sv)</label>
+                                <select id="mh-save" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                                    <option value="2">2+</option>
+                                    <option value="3" selected>3+</option>
+                                    <option value="4">4+</option>
+                                    <option value="5">5+</option>
+                                    <option value="6">6+</option>
+                                    <option value="7">None (-)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Invuln Save (Inv)</label>
+                                <select id="mh-invuln" onchange="calculateMathhammer()" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-lg font-bold">
+                                    <option value="2">2+</option>
+                                    <option value="3">3+</option>
+                                    <option value="4">4+</option>
+                                    <option value="5">5+</option>
+                                    <option value="6">6+</option>
+                                    <option value="7" selected>None (-)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Target Abilities -->
+                        <div class="bg-gray-50 rounded-xl border border-gray-200 p-4">
+                            <h3 class="text-sm font-bold text-gray-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wide">Target Abilities</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <label class="flex items-center space-x-2 text-sm font-bold text-gray-700">
+                                    <input type="checkbox" id="mh-target-cover" onchange="calculateMathhammer()" class="w-4 h-4 text-red-600 rounded">
+                                    <span>Cover</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-sm font-bold text-gray-700">
+                                    <input type="checkbox" id="mh-target-smoke" onchange="calculateMathhammer()" class="w-4 h-4 text-red-600 rounded">
+                                    <span>Smoke</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-sm font-bold text-gray-700">
+                                    <input type="checkbox" id="mh-target-stealth" onchange="calculateMathhammer()" class="w-4 h-4 text-red-600 rounded">
+                                    <span>Stealth</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Results Section -->
+                    <div class="flex flex-col gap-4">
+                        
+                        <div class="bg-gray-900 rounded-2xl shadow-xl p-8 flex flex-col justify-center items-center text-center border-t-8 border-blue-500 h-full relative overflow-hidden">
+                            <span class="text-gray-400 font-bold uppercase tracking-widest text-sm mb-2">Average Total Damage</span>
+                            <span id="mh-res-damage" class="text-7xl font-black text-white drop-shadow-lg tabular-nums">0.00</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
+                                <span class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Avg Hits</span>
+                                <span id="mh-res-hits" class="text-2xl font-black text-gray-900 tabular-nums">0.00</span>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
+                                <span class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Avg Wounds</span>
+                                <span id="mh-res-wounds" class="text-2xl font-black text-gray-900 tabular-nums">0.00</span>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
+                                <span class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Failed Saves</span>
+                                <span id="mh-res-failed" class="text-2xl font-black text-red-600 tabular-nums">0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 mt-auto">
+                            <h4 class="text-sm font-bold text-blue-900 mb-1">How this is calculated:</h4>
+                            <p class="text-xs text-blue-800 leading-relaxed">
+                                Results show the statistical mean (average). A roll of 1 is always treated as a failure for hits and wounds. Target Cover applies a -1 to Hit penalty. Smoke and Stealth apply a -1 to Hit penalty and reduce the attacker's AP by 1. Hit modifiers are capped at -1 total. Save modifiers (AP) apply directly to the Armor Save, but cannot affect the Invulnerable Save. Anti-X triggers Critical Wounds, bypassing Toughness. Devastating Wounds cause Mortals on a Crit, bypassing saves.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= WEEKLY MEET UPS PAGE ================= -->
+        <div id="weeklymeetups-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <h1 class="text-3xl font-extrabold text-gray-900 mb-2 text-center">Weekly Meet Ups Calendar</h1>
+            <p class="text-gray-600 mb-6 text-center">Our regular community schedule. Tap 'Register' to let others know you're coming!</p>
+            
+            <!-- Store Location Toggle -->
+            <div class="flex justify-center space-x-2 sm:space-x-4 mb-8">
+                <button id="btn-weekly-dunfermline" onclick="setWeeklyLocation('Dunfermline')" class="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow transition">Dunfermline</button>
+                <button id="btn-weekly-kirkcaldy" onclick="setWeeklyLocation('Kirkcaldy')" class="px-6 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-lg shadow transition">Kirkcaldy</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
+                <div class="bg-white rounded-lg shadow border border-gray-200 flex flex-col overflow-hidden"><div class="bg-gray-100 px-3 py-2 border-b border-gray-200 text-center font-bold text-gray-800">Monday</div><div id="col-Monday" class="p-3 flex-grow flex flex-col space-y-3"></div></div>
+                <div class="bg-white rounded-lg shadow border border-gray-200 flex flex-col overflow-hidden"><div class="bg-gray-100 px-3 py-2 border-b border-gray-200 text-center font-bold text-gray-800">Tuesday</div><div id="col-Tuesday" class="p-3 flex-grow flex flex-col space-y-3"></div></div>
+                <div class="bg-white rounded-lg shadow border border-gray-200 flex flex-col overflow-hidden ring-2 ring-blue-500 ring-opacity-20"><div class="bg-blue-50 px-3 py-2 border-b border-blue-200 text-center font-bold text-blue-900">Wednesday</div><div id="col-Wednesday" class="p-3 flex-grow flex flex-col space-y-3"></div></div>
+                <div class="bg-white rounded-lg shadow border border-gray-200 flex flex-col overflow-hidden ring-2 ring-indigo-500 ring-opacity-20"><div class="bg-indigo-50 px-3 py-2 border-b border-indigo-200 text-center font-bold text-indigo-900">Thursday</div><div id="col-Thursday" class="p-3 flex-grow flex flex-col space-y-3"></div></div>
+                <div class="bg-white rounded-lg shadow border border-gray-200 flex flex-col overflow-hidden ring-2 ring-purple-500 ring-opacity-20"><div class="bg-purple-50 px-3 py-2 border-b border-purple-200 text-center font-bold text-purple-900">Friday</div><div id="col-Friday" class="p-3 flex-grow flex flex-col space-y-3"></div></div>
+                <div class="bg-white rounded-lg shadow border border-gray-200 flex flex-col overflow-hidden"><div class="bg-gray-100 px-3 py-2 border-b border-gray-200 text-center font-bold text-gray-800">Saturday</div><div id="col-Saturday" class="p-3 flex-grow flex flex-col space-y-3"></div></div>
+                <div class="bg-white rounded-lg shadow border border-gray-200 flex flex-col overflow-hidden ring-2 ring-yellow-500 ring-opacity-20"><div class="bg-yellow-50 px-3 py-2 border-b border-yellow-200 text-center font-bold text-yellow-900">Sunday</div><div id="col-Sunday" class="p-3 flex-grow flex flex-col space-y-3"></div></div>
+            </div>
+        </div>
+
+        <!-- ================= REGISTRATION FORM PAGE ================= -->
+        <div id="register-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <div class="max-w-2xl mx-auto">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-2 text-center">Event Registration</h1>
+                <p id="register-event-details" class="text-gray-600 mb-8 text-center font-bold text-blue-600">Registering for...</p>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                    <form class="space-y-6">
+                        <input type="hidden" id="reg-event-index">
+                        <input type="hidden" id="reg-event-type">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 mb-1">Full Name</label>
+                            <input type="text" id="reg-name" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 mb-1">Email Address</label>
+                            <input type="email" id="reg-email" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 mb-1">Experience Level</label>
+                            <select id="reg-experience" class="block w-full pl-3 pr-10 py-3 text-base text-black border-gray-300 border rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="submitRegistration()" class="w-full mt-6 bg-blue-600 text-white font-bold py-4 px-4 rounded-lg shadow hover:bg-blue-700 transition">
+                            Confirm Registration
+                        </button>
+                        <button type="button" onclick="showPage('weeklymeetups')" class="w-full mt-2 bg-gray-200 text-gray-800 font-bold py-4 px-4 rounded-lg shadow hover:bg-gray-300 transition">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PRE-ORDER REGISTRATION FORM PAGE ================= -->
+        <div id="preorder-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <div class="max-w-2xl mx-auto">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-2 text-center">Register Interest</h1>
+                <p id="preorder-event-details" class="text-gray-600 mb-8 text-center font-bold text-yellow-600">Registering for...</p>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                    <form class="space-y-6">
+                        <input type="hidden" id="preorder-item-title">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 mb-1">Full Name</label>
+                            <input type="text" id="preorder-name" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-900 mb-1">Email Address</label>
+                            <input type="email" id="preorder-email" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 bg-gray-50">
+                        </div>
+                        <button type="button" onclick="submitPreorder()" class="w-full mt-6 bg-yellow-500 text-white font-bold py-4 px-4 rounded-lg shadow hover:bg-yellow-600 transition">
+                            Submit Interest
+                        </button>
+                        <button type="button" onclick="showPage('home')" class="w-full mt-2 bg-gray-200 text-gray-800 font-bold py-4 px-4 rounded-lg shadow hover:bg-gray-300 transition">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= EVENTS PAGE ================= -->
+        <div id="events-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <h1 class="text-3xl font-extrabold text-gray-900 mb-2 text-center">Special Store Events</h1>
+            <p class="text-gray-600 mb-6 text-center">One-off tournaments, pre-releases, and store championships.</p>
+            
+            <!-- Store Location Toggle -->
+            <div class="flex justify-center space-x-2 sm:space-x-4 mb-8">
+                <button id="btn-events-dunfermline" onclick="setEventsLocation('Dunfermline')" class="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow transition">Dunfermline</button>
+                <button id="btn-events-kirkcaldy" onclick="setEventsLocation('Kirkcaldy')" class="px-6 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-lg shadow transition">Kirkcaldy</button>
+            </div>
+
+            <div id="special-events-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </div>
+
+        <!-- ================= TABLE BOOKINGS PAGE ================= -->
+        <div id="bookings-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <div class="max-w-2xl mx-auto">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-2 text-center">Reserve a Table</h1>
+                <p class="text-gray-600 mb-8 text-center">Secure your space for your next battle, card game, or RPG session.</p>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Store Location</label>
+                                <select id="book-location" class="block w-full pl-3 pr-10 py-3 text-base text-black border-gray-300 border rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                                    <option value="Dunfermline">Dunfermline</option>
+                                    <option value="Kirkcaldy">Kirkcaldy</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Game Type</label>
+                                <select id="book-type" class="block w-full pl-3 pr-10 py-3 text-base text-black border-gray-300 border rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                                    <option value="Table Top">Table Top</option>
+                                    <option value="Cards">Cards</option>
+                                    <option value="Role Play">Role Play</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Number of Players</label>
+                                <input type="number" id="book-players" min="1" placeholder="e.g. 2" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Duration</label>
+                                <select id="book-duration" class="block w-full pl-3 pr-10 py-3 text-base text-black border-gray-300 border rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                                    <option value="1 Hour">1 Hour</option>
+                                    <option value="2 Hours">2 Hours</option>
+                                    <option value="3 Hours">3 Hours</option>
+                                    <option value="4 Hours">4 Hours</option>
+                                    <option value="All Day">All Day</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Date</label>
+                                <input type="date" id="book-date" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Start Time</label>
+                                <input type="time" id="book-time" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Email Address</label>
+                                <input type="email" id="book-email" placeholder="your@email.com" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-900 mb-1">Opponent (Optional)</label>
+                                <input type="text" id="book-opponent" placeholder="Who are you playing?" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                            </div>
+                        </div>
+                        <button type="button" onclick="submitBooking()" class="w-full mt-6 bg-blue-600 text-white font-bold py-4 px-4 rounded-lg shadow hover:bg-blue-700 transition">
+                            Confirm Reservation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= WEBSITE PAGE ================= -->
+        <div id="website-page" class="page-section hidden text-center py-16 px-4 animate-fade-in">
+            <div class="max-w-lg mx-auto">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-4">Taking you to the Store...</h1>
+                <p class="text-gray-600 mb-8">Browse our full range of paints, miniatures, TCGs, and hobby supplies on our main website.</p>
+                <a href="https://accentgamingdunfermline.com/" target="_blank" class="inline-block bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg shadow transition">
+                    Go to accentgaming.com
+                </a>
+            </div>
+        </div>
+
+        <!-- ================= STAFF LOGIN PAGE ================= -->
+        <div id="stafflogin-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-16 animate-fade-in">
+            <div class="max-w-md mx-auto text-center bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Staff Portal</h1>
+                <p class="text-gray-600 mb-8 text-sm">Please log in to manage store events. (Demo Password: admin)</p>
+                <input type="password" id="staff-password" placeholder="Enter Password" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 mb-4 text-center">
+                <p id="staff-error" class="text-red-500 text-sm hidden mb-4 font-bold">Incorrect password.</p>
+                <button onclick="handleStaffLogin()" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-lg shadow transition">
+                    Access Dashboard
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= STAFF DASHBOARD PAGE ================= -->
+        <div id="staffdashboard-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-extrabold text-gray-900">Store Management</h1>
+                <button onclick="showPage('home')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded">Log Out</button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Manage Weekly Schedule -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Manage Weekly Schedule</h2>
+                    <div class="mb-6 bg-gray-50 p-4 rounded border border-gray-200">
+                        <h3 class="text-sm font-bold text-gray-700 mb-3">Add New Weekly Event</h3>
+                        <div class="grid grid-cols-3 gap-3 mb-3">
+                            <select id="new-weekly-location" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500">
+                                <option value="Dunfermline">Dunfermline</option>
+                                <option value="Kirkcaldy">Kirkcaldy</option>
+                            </select>
+                            <select id="new-weekly-day" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                            <input type="time" id="new-weekly-time" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500" value="18:00">
+                        </div>
+                        <input type="text" id="new-weekly-title" placeholder="Event Name (e.g. Magic: The Gathering)" class="w-full border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500 mb-3">
+                        <button onclick="addWeeklyEvent()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded text-sm transition">Add Event</button>
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-700 mb-3">Current Schedule</h3>
+                    <ul id="admin-weekly-list" class="divide-y divide-gray-200 text-sm"></ul>
+                </div>
+
+                <!-- Manage Special Events -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Manage Special Events</h2>
+                    <div class="mb-6 bg-gray-50 p-4 rounded border border-gray-200">
+                        <h3 class="text-sm font-bold text-gray-700 mb-3">Add New Special Event</h3>
+                        <div class="grid grid-cols-3 gap-3 mb-3">
+                            <select id="new-special-location" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500">
+                                <option value="Dunfermline">Dunfermline</option>
+                                <option value="Kirkcaldy">Kirkcaldy</option>
+                            </select>
+                            <input type="text" id="new-special-type" placeholder="Badge (e.g. Tournament)" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500">
+                            <select id="new-special-color" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500">
+                                <option value="red">Red Badge</option>
+                                <option value="green">Green Badge</option>
+                                <option value="blue">Blue Badge</option>
+                            </select>
+                        </div>
+                        <input type="text" id="new-special-title" placeholder="Event Title" class="w-full border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500 mb-3">
+                        <textarea id="new-special-desc" placeholder="Event Description..." class="w-full border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500 mb-3" rows="2"></textarea>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <input type="text" id="new-special-date" placeholder="Date (e.g. Saturday, June 13th)" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500">
+                            <input type="text" id="new-special-time" placeholder="Time (e.g. All Day Event)" class="border border-gray-300 rounded px-3 py-2 text-sm text-black focus:outline-none focus:ring-blue-500">
+                        </div>
+                        <button onclick="addSpecialEvent()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded text-sm transition">Add Special Event</button>
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-700 mb-3">Current Special Events</h3>
+                    <ul id="admin-special-list" class="divide-y divide-gray-200 text-sm"></ul>
+                </div>
+
+                <!-- Manage Table Bookings -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
+                    <div class="flex justify-between items-center mb-4 border-b pb-2">
+                        <h2 class="text-xl font-bold text-gray-900">Table Bookings</h2>
+                        <span id="booking-count-badge" class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">0 Total</span>
+                    </div>
+                    <ul id="admin-bookings-list" class="divide-y divide-gray-200 text-sm"></ul>
+                </div>
+
+                <!-- Registration History (Global Audit Log) -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
+                    <div class="flex justify-between items-center mb-4 border-b pb-2">
+                        <h2 class="text-xl font-bold text-gray-900">Registration History Log (All Events)</h2>
+                        <span id="reg-count-badge" class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">0 Total</span>
+                    </div>
+                    <ul id="admin-registrations-list" class="divide-y divide-gray-200 text-sm"></ul>
+                </div>
+
+                <!-- Manage Pre-Orders -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Manage Pre-Orders & Interest</h2>
+                    
+                    <div class="mb-6 bg-gray-50 p-4 rounded border border-gray-200">
+                        <h3 class="text-sm font-bold text-gray-700 mb-3">Add New Pre-Order Item</h3>
+                        <div class="flex flex-col sm:flex-row gap-4 items-end mb-4">
+                            <div class="w-full">
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Item Name</label>
+                                <input type="text" id="admin-new-preorder-item" class="w-full text-black border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-blue-500">
+                            </div>
+                            <button onclick="addPreorderItem()" class="w-full sm:w-auto whitespace-nowrap bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm transition">Add Item</button>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold text-gray-700 mb-3 border-t border-gray-200 pt-3">Active Pre-Order Items</h3>
+                        <ul id="admin-active-preorders-list" class="divide-y divide-gray-200 text-sm bg-white border border-gray-200 rounded p-2"></ul>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-4 border-b pb-2">
+                        <h3 class="text-lg font-bold text-gray-900">Pre-Order Registrations</h3>
+                        <span id="preorder-count-badge" class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded">0 Total</span>
+                    </div>
+                    <ul id="admin-preorder-list" class="divide-y divide-gray-200 text-sm"></ul>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer tied to the physical store -->
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+            <div class="mb-4 sm:mb-0">
+                <span class="text-white font-bold text-lg uppercase tracking-wide">Accent Gaming</span>
+                <p class="text-sm mt-1">Dunfermline & Kirkcaldy</p>
+            </div>
+            <div class="text-sm flex flex-col items-center sm:items-end">
+                <p class="mb-2">&copy; 2026 Accent Gaming Ltd.</p>
+                <button onclick="showPage('stafflogin')" class="text-xs text-gray-600 hover:text-gray-300 transition underline">Staff Portal</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Global Location States
+        let currentWeeklyLoc = 'Dunfermline';
+        let currentEventsLoc = 'Dunfermline';
+
+        let preorderItemsData = [];
+        let preorderRegsData = [];
+
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(pageId + '-page').classList.remove('hidden');
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if(link.id) {
+                    link.classList.remove('bg-gray-800', 'text-white', 'shadow-inner');
+                    if(link.id === 'nav-login') {
+                        link.classList.remove('bg-blue-800');
+                    } else {
+                        link.classList.add('text-gray-300');
+                    }
+                }
+            });
+            const activeLink = document.getElementById('nav-' + pageId);
+            if(activeLink) {
+                if(activeLink.id === 'nav-login') {
+                    activeLink.classList.add('bg-blue-800', 'shadow-inner');
+                } else {
+                    activeLink.classList.remove('text-gray-300');
+                    activeLink.classList.add('bg-gray-800', 'text-white', 'shadow-inner');
+                }
+            }
+            
+            if(pageId === 'tabletoptracker') {
+                calculateMathhammer();
+            }
+        }
+
+        function setWeeklyLocation(loc) {
+            currentWeeklyLoc = loc;
+            document.getElementById('btn-weekly-dunfermline').className = loc === 'Dunfermline' ? 'px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow transition' : 'px-6 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-lg shadow transition';
+            document.getElementById('btn-weekly-kirkcaldy').className = loc === 'Kirkcaldy' ? 'px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow transition' : 'px-6 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-lg shadow transition';
+            renderAllEvents();
+        }
+
+        function setEventsLocation(loc) {
+            currentEventsLoc = loc;
+            document.getElementById('btn-events-dunfermline').className = loc === 'Dunfermline' ? 'px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow transition' : 'px-6 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-lg shadow transition';
+            document.getElementById('btn-events-kirkcaldy').className = loc === 'Kirkcaldy' ? 'px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow transition' : 'px-6 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-lg shadow transition';
+            renderAllEvents();
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* STAFF PORTAL LOGIC                                                         */
+        /* -------------------------------------------------------------------------- */
+
+        let weeklyEventsData = [];
+        let specialEventsData = [];
+        let tableBookingsData = [];
+        let registrationsData = [];
+
+        function getStartOfWeek() {
+            const d = new Date();
+            const day = d.getDay() || 7; 
+            d.setHours(0, 0, 0, 0);
+            d.setDate(d.getDate() - (day - 1)); 
+            return d.getTime();
+        }
+
+        window.onload = function() {
+            const savedWeekly = localStorage.getItem('accent_weekly_events');
+            if (savedWeekly) {
+                weeklyEventsData = JSON.parse(savedWeekly);
+            } else {
+                weeklyEventsData = [
+                    { location: 'Dunfermline', day: 'Wednesday', title: 'Magic: The Gathering', time: '6:00 PM', registrations: 0 },
+                    { location: 'Dunfermline', day: 'Thursday', title: 'Yu-Gi-Oh!', time: '6:00 PM', registrations: 0 },
+                    { location: 'Dunfermline', day: 'Friday', title: 'Paint & Play', time: '6:00 PM', registrations: 0 },
+                    { location: 'Dunfermline', day: 'Wednesday', title: 'Warhammer 40k Casual', time: '6:00 PM', registrations: 0 },
+                    { location: 'Dunfermline', day: 'Friday', title: 'Magic: The Gathering', time: '6:00 PM', registrations: 0 },
+                    { location: 'Dunfermline', day: 'Sunday', title: 'Pokémon TCG', time: '11:00 AM', registrations: 0 }
+                ];
+            }
+
+            const savedRegs = localStorage.getItem('accent_registrations');
+            if (savedRegs) {
+                registrationsData = JSON.parse(savedRegs);
+            }
+
+            const currentWeekStart = getStartOfWeek();
+            const savedWeekStart = localStorage.getItem('accent_week_start');
+            
+            if (!savedWeekStart || parseInt(savedWeekStart) !== currentWeekStart) {
+                registrationsData = registrationsData.filter(r => r.eventType !== 'weekly');
+                weeklyEventsData.forEach(ev => ev.registrations = 0);
+                localStorage.setItem('accent_week_start', currentWeekStart);
+                localStorage.setItem('accent_registrations', JSON.stringify(registrationsData));
+                localStorage.setItem('accent_weekly_events', JSON.stringify(weeklyEventsData));
+            }
+
+            const savedSpecial = localStorage.getItem('accent_special_events');
+            if (savedSpecial) {
+                specialEventsData = JSON.parse(savedSpecial);
+            } else {
+                specialEventsData = [
+                    { location: 'Kirkcaldy', type: 'Tournament', color: 'red', title: 'Warhammer 40k Store Championship', desc: 'A 3-round competitive tournament using current matched play rules.', date: 'Saturday, June 13th', time: 'All Day Event' },
+                    { location: 'Kirkcaldy', type: 'Launch Party', color: 'green', title: 'Halo Flashpoint Introduction Day', desc: 'Want to try out the brand new tactical miniatures game? Come down for free guided tutorial matches.', date: 'Saturday, June 20th', time: '11:00 AM - 4:00 PM' }
+                ];
+            }
+
+            const savedBookings = localStorage.getItem('accent_bookings');
+            if(savedBookings) {
+                tableBookingsData = JSON.parse(savedBookings);
+            } else {
+                tableBookingsData = [
+                    { location: 'Dunfermline', type: 'Table Top', players: '2', duration: '3 Hours', date: '2026-06-13', time: '14:00', email: 'gamer1@example.com', opponent: 'Steve' },
+                    { location: 'Kirkcaldy', type: 'Role Play', players: '5', duration: '4 Hours', date: '2026-06-14', time: '18:00', email: 'rpgparty@example.com', opponent: '' }
+                ];
+            }
+
+            const savedPreorderItems = localStorage.getItem('accent_preorder_items');
+            if (savedPreorderItems) {
+                preorderItemsData = JSON.parse(savedPreorderItems);
+            } else {
+                preorderItemsData = ['Warhammer 40,000: 10th Edition Starter Set'];
+            }
+
+            const savedPreorderRegs = localStorage.getItem('accent_preorder_regs');
+            if (savedPreorderRegs) {
+                preorderRegsData = JSON.parse(savedPreorderRegs);
+            } else {
+                preorderRegsData = [];
+            }
+
+            renderAllEvents();
+            renderCardControls(); 
+            calculateMathhammer();
+            renderPreorders();
+        }
+
+        function handleStaffLogin() {
+            const pass = document.getElementById('staff-password').value;
+            if (pass === 'admin') {
+                document.getElementById('staff-error').classList.add('hidden');
+                document.getElementById('staff-password').value = '';
+                showPage('staffdashboard');
+                renderAdminLists();
+                renderAdminBookings();
+                renderAdminRegistrations();
+                renderAdminPreorders();
+            } else {
+                document.getElementById('staff-error').classList.remove('hidden');
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('accent_weekly_events', JSON.stringify(weeklyEventsData));
+            localStorage.setItem('accent_special_events', JSON.stringify(specialEventsData));
+            localStorage.setItem('accent_bookings', JSON.stringify(tableBookingsData));
+            localStorage.setItem('accent_registrations', JSON.stringify(registrationsData));
+            renderAllEvents();
+            renderAdminLists();
+            renderAdminBookings();
+            renderAdminRegistrations();
+        }
+
+        function addWeeklyEvent() {
+            const location = document.getElementById('new-weekly-location').value;
+            const day = document.getElementById('new-weekly-day').value;
+            const timeVal = document.getElementById('new-weekly-time').value; 
+            const title = document.getElementById('new-weekly-title').value;
+            if(!title) return alert("Please enter an event name.");
+            
+            let timeStr = timeVal;
+            if (timeVal) {
+                let [h, m] = timeVal.split(':');
+                let ampm = h >= 12 ? 'PM' : 'AM';
+                h = h % 12 || 12;
+                timeStr = `${h}:${m} ${ampm}`;
+            }
+
+            weeklyEventsData.push({ location, day, title, time: timeStr, registrations: 0 });
+            document.getElementById('new-weekly-title').value = '';
+            saveData();
+        }
+
+        function removeWeeklyEvent(index) {
+            const ev = weeklyEventsData[index];
+            if(confirm(`Are you sure you want to delete ${ev.title} in ${ev.location}?`)) {
+                registrationsData = registrationsData.filter(r => !(r.eventType === 'weekly' && r.eventName === ev.title && r.eventDay === ev.day && r.eventTime === ev.time && r.eventLoc === ev.location));
+                weeklyEventsData.splice(index, 1);
+                saveData();
+            }
+        }
+
+        function addSpecialEvent() {
+            const location = document.getElementById('new-special-location').value;
+            const type = document.getElementById('new-special-type').value || 'Event';
+            const color = document.getElementById('new-special-color').value;
+            const title = document.getElementById('new-special-title').value;
+            const desc = document.getElementById('new-special-desc').value;
+            const date = document.getElementById('new-special-date').value;
+            const time = document.getElementById('new-special-time').value;
+
+            if(!title) return alert("Please enter a title.");
+
+            specialEventsData.push({ location, type, color, title, desc, date, time });
+            document.getElementById('new-special-title').value = '';
+            document.getElementById('new-special-desc').value = '';
+            saveData();
+        }
+
+        function removeSpecialEvent(index) {
+            const ev = specialEventsData[index];
+            if(confirm(`Are you sure you want to delete ${ev.title} in ${ev.location}?`)) {
+                registrationsData = registrationsData.filter(r => !(r.eventType === 'special' && r.eventName === ev.title && r.eventDay === ev.date && r.eventTime === ev.time && r.eventLoc === ev.location));
+                specialEventsData.splice(index, 1);
+                saveData();
+            }
+        }
+
+        function submitBooking() {
+            const location = document.getElementById('book-location').value;
+            const type = document.getElementById('book-type').value;
+            const players = document.getElementById('book-players').value;
+            const duration = document.getElementById('book-duration').value;
+            const date = document.getElementById('book-date').value;
+            const time = document.getElementById('book-time').value;
+            const email = document.getElementById('book-email').value;
+            const opponent = document.getElementById('book-opponent').value;
+
+            if(!date || !time || !players || !email) return alert("Please fill out your email, number of players, date, and time.");
+
+            tableBookingsData.push({ location, type, players, duration, date, time, email, opponent });
+            saveData();
+            
+            document.getElementById('home-next-booking-type').innerText = type;
+            let opponentText = opponent ? `vs ${opponent} ` : '';
+            document.getElementById('home-next-booking-details').innerText = `${location} - ${players} Players ${opponentText}`;
+            document.getElementById('home-next-booking-datetime').innerText = `${date} at ${time} (${duration})`;
+
+            alert(`Reservation Confirmed for ${location}! It has been sent to the Staff Portal.`);
+            
+            document.getElementById('book-players').value = '';
+            document.getElementById('book-date').value = '';
+            document.getElementById('book-time').value = '';
+            document.getElementById('book-email').value = '';
+            document.getElementById('book-opponent').value = '';
+
+            showPage('home');
+        }
+
+        function removeBooking(index) {
+            if(confirm("Are you sure you want to cancel this booking?")) {
+                tableBookingsData.splice(index, 1);
+                saveData();
+            }
+        }
+
+        function renderAdminBookings() {
+            const bList = document.getElementById('admin-bookings-list');
+            const bCount = document.getElementById('booking-count-badge');
+            if(!bList) return;
+            
+            bList.innerHTML = '';
+            bCount.innerText = `${tableBookingsData.length} Total`;
+
+            if(tableBookingsData.length === 0) {
+                bList.innerHTML = '<li class="py-4 text-gray-500 italic text-center">No table bookings found.</li>';
+                return;
+            }
+
+            tableBookingsData.forEach((b, i) => {
+                bList.innerHTML += `
+                    <li class="py-3 flex justify-between items-center border-b border-gray-100 last:border-0">
+                        <div>
+                            <span class="font-bold text-gray-800">${b.date} at ${b.time}</span>
+                            <span class="bg-gray-200 text-gray-800 text-xs font-bold px-2 py-0.5 rounded ml-2">${b.location}</span>
+                            <br>
+                            <span class="text-blue-600 font-semibold">${b.type}</span> 
+                            <span class="text-gray-500">(${b.players} Players, ${b.duration})</span>
+                            ${b.opponent ? `<br><span class="text-gray-600 text-xs">Playing vs: ${b.opponent}</span>` : ''}
+                            <br><span class="text-gray-400 text-xs">${b.email || 'No email provided'}</span>
+                        </div>
+                        <button onclick="removeBooking(${i})" class="text-red-500 hover:text-red-700 font-bold px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition">Cancel</button>
+                    </li>
+                `;
+            });
+        }
+
+        function openRegisterForm(index, title, sub1, sub2, type) {
+            document.getElementById('reg-event-index').value = index;
+            document.getElementById('reg-event-type').value = type;
+            document.getElementById('register-event-details').innerText = `${title} on ${sub1} at ${sub2}`;
+            showPage('register');
+        }
+
+        function submitRegistration() {
+            const index = document.getElementById('reg-event-index').value;
+            const type = document.getElementById('reg-event-type').value || 'weekly';
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const exp = document.getElementById('reg-experience').value;
+
+            if(!name || !email) return alert("Please fill out your name and email.");
+
+            let ev;
+            let dayOrDate;
+            if(type === 'special') {
+                ev = specialEventsData[index];
+                dayOrDate = ev.date;
+            } else {
+                ev = weeklyEventsData[index];
+                dayOrDate = ev.day;
+            }
+
+            registrationsData.push({
+                eventType: type,
+                eventLoc: ev.location,
+                eventName: ev.title,
+                eventDay: dayOrDate,
+                eventTime: ev.time,
+                userName: name,
+                userEmail: email,
+                userExp: exp,
+                timestamp: new Date().toLocaleString()
+            });
+
+            saveData();
+            
+            alert(`Registration Confirmed for ${ev.location}! We look forward to seeing you.`);
+            document.getElementById('reg-name').value = '';
+            document.getElementById('reg-email').value = '';
+            
+            showPage(type === 'special' ? 'events' : 'weeklymeetups');
+        }
+
+        function removeUserRegistration(regIdx) {
+            if(confirm("Are you sure you want to remove this person from the event?")) {
+                registrationsData.splice(regIdx, 1);
+                saveData();
+            }
+        }
+
+        function renderAdminRegistrations() {
+            const rList = document.getElementById('admin-registrations-list');
+            const rCount = document.getElementById('reg-count-badge');
+            if(!rList) return;
+            
+            rList.innerHTML = '';
+            rCount.innerText = `${registrationsData.length} Total`;
+
+            if(registrationsData.length === 0) {
+                rList.innerHTML = '<li class="py-4 text-gray-500 italic text-center">No registrations currently logged.</li>';
+                return;
+            }
+
+            registrationsData.forEach((r, i) => {
+                rList.innerHTML += `
+                    <li class="py-3 flex justify-between items-center border-b border-gray-100 last:border-0">
+                        <div>
+                            <span class="font-bold text-gray-800">${r.userName}</span> <span class="text-xs text-gray-500 ml-2">(${r.timestamp})</span><br>
+                            <span class="text-blue-600 font-semibold">${r.eventName}</span> 
+                            <span class="bg-gray-200 text-gray-800 text-xs font-bold px-2 py-0.5 rounded ml-2">${r.eventLoc}</span>
+                            <br><span class="text-gray-500 text-xs">- ${r.eventDay} at ${r.eventTime} (${r.userExp})</span><br>
+                            <span class="text-xs text-gray-400">${r.userEmail}</span>
+                        </div>
+                        <button onclick="removeUserRegistration(${i})" class="text-red-500 hover:text-red-700 font-bold px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition">Delete Log</button>
+                    </li>
+                `;
+            });
+        }
+
+        function renderAllEvents() {
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            
+            days.forEach(day => {
+                const col = document.getElementById(`col-${day}`);
+                if (!col) return;
+                col.innerHTML = ''; 
+
+                const dayEvents = weeklyEventsData
+                    .map((ev, i) => ({...ev, originalIndex: i}))
+                    .filter(e => e.day === day && e.location === currentWeeklyLoc);
+                
+                if (dayEvents.length === 0) {
+                    col.innerHTML = `<p class="text-xs text-gray-400 text-center italic mt-4">Open Tables Available</p>`;
+                } else {
+                    dayEvents.forEach(ev => {
+                        const safeTitle = ev.title.replace(/'/g, "\\'");
+                        col.innerHTML += `
+                            <div class="bg-white rounded p-3 border border-gray-200 shadow-sm">
+                                <p class="text-sm font-bold text-gray-900 leading-tight">${ev.title}</p>
+                                <p class="text-xs text-gray-600 mb-3 mt-1 font-medium">${ev.time}</p>
+                                <button onclick="openRegisterForm(${ev.originalIndex}, '${safeTitle}', '${ev.day}', '${ev.time}', 'weekly')" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold py-1.5 rounded transition">Register</button>
+                            </div>
+                        `;
+                    });
+                }
+            });
+
+            const specialContainer = document.getElementById('special-events-container');
+            if (specialContainer) {
+                specialContainer.innerHTML = '';
+                
+                const filteredSpecials = specialEventsData
+                    .map((ev, i) => ({...ev, originalIndex: i}))
+                    .filter(e => e.location === currentEventsLoc);
+
+                if (filteredSpecials.length === 0) {
+                    specialContainer.innerHTML = `<p class="text-gray-500 italic col-span-2">No special events currently scheduled for ${currentEventsLoc}.</p>`;
+                } else {
+                    filteredSpecials.forEach(ev => {
+                        let bgClass = 'bg-blue-100'; let txtClass = 'text-blue-800';
+                        if (ev.color === 'red') { bgClass = 'bg-red-100'; txtClass = 'text-red-800'; }
+                        if (ev.color === 'green') { bgClass = 'bg-green-100'; txtClass = 'text-green-800'; }
+
+                        const safeTitle = ev.title.replace(/'/g, "\\'");
+
+                        specialContainer.innerHTML += `
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between">
+                                <div class="p-6">
+                                    <span class="${bgClass} ${txtClass} text-xs font-bold px-2.5 py-1 rounded">${ev.type}</span>
+                                    <h3 class="text-xl font-bold text-gray-900 mt-3">${ev.title}</h3>
+                                    <p class="text-gray-600 text-sm mt-2">${ev.desc}</p>
+                                </div>
+                                <div class="p-6 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+                                    <div>
+                                        <span class="block font-bold text-gray-900">${ev.date}</span>
+                                        <span class="text-xs text-gray-500">${ev.time}</span>
+                                    </div>
+                                    <button onclick="openRegisterForm(${ev.originalIndex}, '${safeTitle}', '${ev.date}', '${ev.time}', 'special')" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded shadow">Register</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            }
+        }
+
+        function renderAdminLists() {
+            const wList = document.getElementById('admin-weekly-list');
+            if(wList) {
+                wList.innerHTML = '';
+                weeklyEventsData.forEach((ev, i) => {
+                    let regHTML = '';
+                    let regCount = 0;
+                    registrationsData.forEach((r, rIdx) => {
+                        if (r.eventType === 'weekly' && r.eventName === ev.title && r.eventDay === ev.day && r.eventTime === ev.time && r.eventLoc === ev.location) {
+                            regCount++;
+                            regHTML += `
+                                <div class="flex justify-between items-center text-xs mt-2 bg-white border border-gray-200 p-2 rounded shadow-sm">
+                                    <div><span class="font-bold text-gray-800">${r.userName}</span> <span class="text-gray-500">(${r.userExp})</span> - ${r.userEmail}</div>
+                                    <button onclick="removeUserRegistration(${rIdx})" class="text-red-500 hover:text-red-700 font-bold bg-red-50 hover:bg-red-100 px-2 py-1 rounded">Remove</button>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    wList.innerHTML += `
+                        <li class="py-4 flex flex-col border-b border-gray-200 last:border-0">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-gray-800">${ev.day}</span> - ${ev.title} 
+                                    <span class="text-gray-500 text-xs">(${ev.time})</span>
+                                    <span class="bg-gray-200 text-gray-800 text-xs font-bold px-2 py-0.5 rounded ml-2">${ev.location}</span>
+                                    <span class="ml-2 bg-green-100 text-green-800 text-xs font-bold px-2 py-0.5 rounded">${regCount} Registered</span>
+                                </div>
+                                <button onclick="removeWeeklyEvent(${i})" class="text-red-500 hover:text-red-700 font-bold px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition">Delete Event</button>
+                            </div>
+                            <div class="mt-2 pl-4 border-l-2 border-blue-200 space-y-1">
+                                ${regHTML}
+                            </div>
+                        </li>
+                    `;
+                });
+            }
+
+            const sList = document.getElementById('admin-special-list');
+            if(sList) {
+                sList.innerHTML = '';
+                specialEventsData.forEach((ev, i) => {
+                    let regHTML = '';
+                    let regCount = 0;
+                    registrationsData.forEach((r, rIdx) => {
+                        if (r.eventType === 'special' && r.eventName === ev.title && r.eventDay === ev.date && r.eventTime === ev.time && r.eventLoc === ev.location) {
+                            regCount++;
+                            regHTML += `
+                                <div class="flex justify-between items-center text-xs mt-2 bg-white border border-gray-200 p-2 rounded shadow-sm">
+                                    <div><span class="font-bold text-gray-800">${r.userName}</span> <span class="text-gray-500">(${r.userExp})</span> - ${r.userEmail}</div>
+                                    <button onclick="removeUserRegistration(${rIdx})" class="text-red-500 hover:text-red-700 font-bold bg-red-50 hover:bg-red-100 px-2 py-1 rounded">Remove</button>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    sList.innerHTML += `
+                        <li class="py-4 flex flex-col border-b border-gray-200 last:border-0">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="font-bold text-gray-800">${ev.title}</span> <span class="text-gray-500 text-xs">(${ev.date})</span>
+                                    <span class="bg-gray-200 text-gray-800 text-xs font-bold px-2 py-0.5 rounded ml-2">${ev.location}</span>
+                                    <span class="ml-2 bg-green-100 text-green-800 text-xs font-bold px-2 py-0.5 rounded">${regCount} Registered</span>
+                                </div>
+                                <button onclick="removeSpecialEvent(${i})" class="text-red-500 hover:text-red-700 font-bold px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition">Delete Event</button>
+                            </div>
+                            <div class="mt-2 pl-4 border-l-2 border-green-200 space-y-1">
+                                ${regHTML}
+                            </div>
+                        </li>
+                    `;
+                });
+            }
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* PRE-ORDER LOGIC                                                  */
+        /* -------------------------------------------------------------------------- */
+        
+        function renderPreorders() {
+            const container = document.getElementById('home-preorders-container');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            if(preorderItemsData.length === 0) return;
+            
+            preorderItemsData.forEach(item => {
+                const safeTitle = item.replace(/'/g, "\\'");
+                container.innerHTML += `
+                <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl shadow-sm border border-yellow-300 p-6 md:p-8 flex flex-col md:flex-row justify-between items-center hover:shadow-md transition">
+                    <div class="mb-4 md:mb-0 w-full md:w-auto text-center md:text-left">
+                        <h2 class="text-yellow-800 text-xs font-bold uppercase tracking-wider flex items-center justify-center md:justify-start mb-1">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Coming Soon / Pre-Order
+                        </h2>
+                        <p class="text-2xl font-black text-gray-900">${item}</p>
+                        <p class="text-gray-700 text-sm mt-1">Register your interest to secure your copy when it arrives!</p>
+                    </div>
+                    <button onclick="openPreorderForm('${safeTitle}')" class="w-full md:w-auto bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-lg shadow transition transform hover:-translate-y-0.5">
+                        Register Interest
+                    </button>
+                </div>`;
+            });
+        }
+
+        function renderAdminPreorders() {
+            const iList = document.getElementById('admin-active-preorders-list');
+            if(iList) {
+                iList.innerHTML = '';
+                if(preorderItemsData.length === 0) {
+                    iList.innerHTML = '<li class="py-2 text-gray-500 italic text-center">No active pre-order items.</li>';
+                } else {
+                    preorderItemsData.forEach((item, index) => {
+                        iList.innerHTML += `
+                            <li class="py-2 flex justify-between items-center border-b border-gray-100 last:border-0">
+                                <span class="font-bold text-gray-800">${item}</span>
+                                <button onclick="deletePreorderItem(${index})" class="text-red-500 hover:text-red-700 font-bold px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition">Delete Item</button>
+                            </li>
+                        `;
+                    });
+                }
+            }
+
+            const pList = document.getElementById('admin-preorder-list');
+            const pCount = document.getElementById('preorder-count-badge');
+            if(!pList) return;
+            
+            pList.innerHTML = '';
+            pCount.innerText = `${preorderRegsData.length} Total`;
+
+            if(preorderRegsData.length === 0) {
+                pList.innerHTML = '<li class="py-4 text-gray-500 italic text-center">No pre-order interest logged.</li>';
+                return;
+            }
+
+            preorderRegsData.forEach((r, i) => {
+                pList.innerHTML += `
+                    <li class="py-3 flex justify-between items-center border-b border-gray-100 last:border-0">
+                        <div>
+                            <span class="font-bold text-gray-800">${r.userName}</span> <span class="text-xs text-gray-500 ml-2">(${r.timestamp})</span><br>
+                            <span class="text-yellow-600 font-semibold">${r.itemName}</span><br>
+                            <span class="text-xs text-gray-400">${r.userEmail}</span>
+                        </div>
+                        <button onclick="removePreorderReg(${i})" class="text-red-500 hover:text-red-700 font-bold px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition">Delete Log</button>
+                    </li>
+                `;
+            });
+        }
+
+        function savePreorderData() {
+            localStorage.setItem('accent_preorder_items', JSON.stringify(preorderItemsData));
+            localStorage.setItem('accent_preorder_regs', JSON.stringify(preorderRegsData));
+            renderPreorders();
+            renderAdminPreorders();
+        }
+
+        function addPreorderItem() {
+            const newVal = document.getElementById('admin-new-preorder-item').value;
+            if(!newVal) return alert("Please enter an item name.");
+            preorderItemsData.push(newVal);
+            document.getElementById('admin-new-preorder-item').value = '';
+            savePreorderData();
+            alert("Pre-order item added.");
+        }
+
+        function deletePreorderItem(index) {
+            const item = preorderItemsData[index];
+            if(confirm(`Are you sure you want to delete ${item}? This will not delete existing registrations.`)) {
+                preorderItemsData.splice(index, 1);
+                savePreorderData();
+            }
+        }
+
+        function openPreorderForm(title) {
+            document.getElementById('preorder-item-title').value = title;
+            document.getElementById('preorder-event-details').innerText = title;
+            showPage('preorder');
+        }
+
+        function submitPreorder() {
+            const title = document.getElementById('preorder-item-title').value;
+            const name = document.getElementById('preorder-name').value;
+            const email = document.getElementById('preorder-email').value;
+
+            if(!name || !email) return alert("Please fill out your name and email.");
+
+            preorderRegsData.push({
+                itemName: title,
+                userName: name,
+                userEmail: email,
+                timestamp: new Date().toLocaleString()
+            });
+
+            savePreorderData();
+            
+            alert("Interest Registered! We'll be in touch when it arrives.");
+            document.getElementById('preorder-name').value = '';
+            document.getElementById('preorder-email').value = '';
+            
+            showPage('home');
+        }
+
+        function removePreorderReg(index) {
+            if(confirm("Are you sure you want to remove this pre-order registration?")) {
+                preorderRegsData.splice(index, 1);
+                savePreorderData();
+            }
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* CARD SCORING TRACKER                                             */
+        /* -------------------------------------------------------------------------- */
+        
+        let cardScores = { p1: 20, p2: 20 };
+        let currentCardSystem = 'mtg20';
+
+        function updateCardSystem() {
+            currentCardSystem = document.getElementById('card-system').value;
+            const customContainer = document.getElementById('custom-life-container');
+
+            if (currentCardSystem === 'custom') {
+                customContainer.classList.remove('hidden');
+                return;
+            } else {
+                customContainer.classList.add('hidden');
+            }
+
+            let startLife = 20;
+            if (currentCardSystem === 'mtg40') startLife = 40;
+            if (currentCardSystem === 'ygo') startLife = 8000;
+
+            setStartingCardScore(startLife);
+        }
+
+        function applyCustomLife() {
+            const val = parseInt(document.getElementById('custom-life').value) || 0;
+            setStartingCardScore(val);
+        }
+
+        function setStartingCardScore(val) {
+            cardScores.p1 = val;
+            cardScores.p2 = val;
+            document.getElementById('card-p1-score').innerText = val;
+            document.getElementById('card-p2-score').innerText = val;
+            renderCardControls();
+        }
+
+        function updateCardScore(player, amount) {
+            cardScores[player] += amount;
+            document.getElementById(`card-${player}-score`).innerText = cardScores[player];
+        }
+
+        function renderCardControls() {
+            const p1Box = document.getElementById('card-p1-controls');
+            const p2Box = document.getElementById('card-p2-controls');
+            let increments = currentCardSystem === 'ygo' ? [-1000, -500, -100, +100, +500, +1000] : [-5, -1, +1, +5];
+
+            let html = '';
+            increments.forEach(inc => {
+                const displayInc = inc > 0 ? `+${inc}` : inc;
+                const colorClass = inc > 0 ? 'bg-green-100 hover:bg-green-200 text-black' : 'bg-red-100 hover:bg-red-200 text-black';
+                html += `<button onclick="updateCardScore('PLAYER_PLACEHOLDER', ${inc})" class="${colorClass} font-bold py-3 rounded-xl text-lg sm:text-xl transition shadow-sm border border-transparent active:scale-95">${displayInc}</button>`;
+            });
+
+            const gridCols = increments.length === 6 ? 'grid-cols-3' : 'grid-cols-2';
+            p1Box.className = `grid ${gridCols} gap-3 w-full mt-4`;
+            p2Box.className = `grid ${gridCols} gap-3 w-full mt-4`;
+            p1Box.innerHTML = html.replace(/PLAYER_PLACEHOLDER/g, 'p1');
+            p2Box.innerHTML = html.replace(/PLAYER_PLACEHOLDER/g, 'p2');
+        }
+
+        function resetCardTracker() {
+            if (currentCardSystem === 'custom') applyCustomLife();
+            else updateCardSystem();
+        }
+
+
+        /* -------------------------------------------------------------------------- */
+        /* ACCENT DAMAGE MATRIX CALCULATOR             */
+        /* -------------------------------------------------------------------------- */
+        
+        function calculateMathhammer() {
+            const attacksBase = parseFloat(document.getElementById('mh-attacks').value) || 0;
+            const bs = parseInt(document.getElementById('mh-bs').value) || 3;
+            const str = parseFloat(document.getElementById('mh-strength').value) || 4;
+            let ap = parseFloat(document.getElementById('mh-ap').value) || 0;
+            if(ap > 0) ap = -ap; 
+            const dmgBase = parseFloat(document.getElementById('mh-damage').value) || 1;
+
+            const minus1hit = document.getElementById('mh-minus1hit').checked;
+            const lethal = document.getElementById('mh-lethal').checked;
+            const dev = document.getElementById('mh-devastating').checked;
+            const twin = document.getElementById('mh-twinlinked').checked;
+            const sustained = parseInt(document.getElementById('mh-sustained').value) || 0;
+            const anti = parseInt(document.getElementById('mh-anti').value) || 7;
+            
+            const rapidVal = parseFloat(document.getElementById('mh-rapid-val').value) || 0;
+            const rapidAct = document.getElementById('mh-rapid-active').checked;
+            const attacks = attacksBase + (rapidAct ? (rapidVal * attacksBase) : 0);
+
+            const meltaVal = parseFloat(document.getElementById('mh-melta-val').value) || 0;
+            const meltaAct = document.getElementById('mh-melta-active').checked;
+            const dmg = dmgBase + (meltaAct ? meltaVal : 0);
+
+            const tgh = parseFloat(document.getElementById('mh-toughness').value) || 4;
+            const sv = parseInt(document.getElementById('mh-save').value) || 3;
+            const inv = parseInt(document.getElementById('mh-invuln').value) || 7;
+            const fnp = parseInt(document.getElementById('mh-fnp').value) || 7;
+
+            // TARGET ABILITIES
+            const targetCover = document.getElementById('mh-target-cover').checked;
+            const targetSmoke = document.getElementById('mh-target-smoke').checked;
+            const targetStealth = document.getElementById('mh-target-stealth').checked;
+
+            let apReduction = 0;
+            if (targetSmoke) apReduction += 1;
+            if (targetStealth) apReduction += 1;
+            ap += apReduction;
+            if (ap > 0) ap = 0;
+
+            // HIT PHASE
+            let hitModifier = 0;
+            if (minus1hit) hitModifier -= 1;
+            if (targetCover) hitModifier -= 1;
+            if (targetSmoke) hitModifier -= 1;
+            if (targetStealth) hitModifier -= 1;
+            if (hitModifier < -1) hitModifier = -1; // cap at -1
+
+            let hitTarget = bs - hitModifier; 
+            if (hitTarget > 6) hitTarget = 6;
+            
+            let baseHitChanceCrit = 1 / 6.0; 
+            let normalHitSides = 6 - hitTarget; 
+            if (normalHitSides < 0) normalHitSides = 0;
+            let baseHitChanceNormal = normalHitSides / 6.0;
+
+            let hitChanceCrit = baseHitChanceCrit;
+            let hitChanceNormal = baseHitChanceNormal;
+
+            const rrHits = document.getElementById('mh-reroll-hits').value;
+            if (rrHits === 'full') {
+                let hitFailChance = 1.0 - (hitChanceCrit + hitChanceNormal);
+                hitChanceCrit += hitFailChance * baseHitChanceCrit;
+                hitChanceNormal += hitFailChance * baseHitChanceNormal;
+            } else if (rrHits === 'ones') {
+                hitChanceCrit += (1 / 6.0) * baseHitChanceCrit;
+                hitChanceNormal += (1 / 6.0) * baseHitChanceNormal;
+            }
+
+            const critsScored = attacks * hitChanceCrit;
+            const normalHitsScored = attacks * hitChanceNormal;
+
+            let autoWounds = 0;
+            let hitsToWound = normalHitsScored;
+
+            if (lethal) {
+                autoWounds = critsScored;
+            } else {
+                hitsToWound += critsScored;
+            }
+
+            if (sustained > 0) {
+                hitsToWound += (critsScored * sustained);
+            }
+
+            const totalHitsDisplay = autoWounds + hitsToWound;
+
+            // WOUND PHASE
+            let woundTarget = 4;
+            if (str >= tgh * 2) woundTarget = 2;
+            else if (str > tgh) woundTarget = 3;
+            else if (str === tgh) woundTarget = 4;
+            else if (str < tgh) woundTarget = 5;
+            if (str <= tgh / 2) woundTarget = 6;
+
+            let critWoundTarget = 6;
+            if (anti < 7) critWoundTarget = anti;
+            
+            let normalWoundTarget = woundTarget;
+            if (normalWoundTarget >= critWoundTarget) normalWoundTarget = 7; 
+
+            let baseChanceCritWound = Math.max(0, 7 - critWoundTarget) / 6.0;
+            let baseChanceNormalWound = 0;
+            if (normalWoundTarget <= 6) baseChanceNormalWound = Math.max(0, critWoundTarget - normalWoundTarget) / 6.0;
+
+            let chanceCritWound = baseChanceCritWound;
+            let chanceNormalWound = baseChanceNormalWound;
+
+            const rrWounds = document.getElementById('mh-reroll-wounds').value;
+            if (twin || rrWounds === 'full') {
+                let woundFailChance = 1.0 - (baseChanceCritWound + baseChanceNormalWound);
+                chanceCritWound += woundFailChance * baseChanceCritWound;
+                chanceNormalWound += woundFailChance * baseChanceNormalWound;
+            } else if (rrWounds === 'ones') {
+                chanceCritWound += (1 / 6.0) * baseChanceCritWound;
+                chanceNormalWound += (1 / 6.0) * baseChanceNormalWound;
+            }
+
+            const critsWounded = hitsToWound * chanceCritWound;
+            const normalWounded = hitsToWound * chanceNormalWound;
+            
+            let savesToTake = 0;
+            let mortalWounds = 0;
+
+            if (dev) {
+                mortalWounds = critsWounded;
+                savesToTake = normalWounded + autoWounds;
+            } else {
+                savesToTake = normalWounded + critsWounded + autoWounds;
+            }
+
+            const totalWoundsDisplay = savesToTake + mortalWounds;
+
+            // SAVE PHASE
+            let bestSave = Math.min(sv - ap, inv);
+            let saveChance = 0;
+            if (bestSave <= 6) saveChance = Math.max(0, 7 - bestSave) / 6.0;
+
+            const failedSaves = savesToTake * (1 - saveChance);
+
+            // DAMAGE PHASE
+            let rawDamage = (failedSaves * dmg) + (mortalWounds * dmg); 
+            let fnpPassChance = 0;
+            if (fnp <= 6) fnpPassChance = Math.max(0, 7 - fnp) / 6.0;
+
+            let finalDamage = rawDamage * (1 - fnpPassChance);
+
+            document.getElementById('mh-res-hits').innerText = totalHitsDisplay.toFixed(2);
+            document.getElementById('mh-res-wounds').innerText = totalWoundsDisplay.toFixed(2);
+            document.getElementById('mh-res-failed').innerText = failedSaves.toFixed(2);
+            document.getElementById('mh-res-damage').innerText = finalDamage.toFixed(2);
+        }
+
+    </script>
+    <style>
+        .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .overflow-x-auto::-webkit-scrollbar { display: none; }
+        .overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</body>
+</html>
