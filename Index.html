@@ -4,52 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accent Gaming - Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- PWA Requirements -->
     <link rel="manifest" href="manifest.json">
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js');
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js');
+        });
       }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
+
     <!-- Top Navigation Bar -->
-    <nav class="bg-gray-900 shadow-lg border-b-4 border-blue-600">
+    <nav id="main-nav" class="hidden bg-gray-900 shadow-lg border-b-4 border-blue-600 relative z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <!-- Logo and Links -->
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center mr-8">
-                        <span class="text-white text-2xl font-black tracking-wider uppercase">Accent <span class="text-blue-500">Gaming</span></span>
+                        <span class="text-white text-xl md:text-2xl font-black tracking-wider uppercase">Accent <span class="text-blue-500">Gaming</span></span>
                     </div>
+                    
                     <!-- Desktop Menu -->
                     <div class="hidden md:flex space-x-4 items-center">
                         <button id="nav-home" onclick="showPage('home')" class="nav-link bg-gray-800 text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150 shadow-inner">Home</button>
                         <button id="nav-weeklymeetups" onclick="showPage('weeklymeetups')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Weekly Meet Ups</button>
                         <button id="nav-events" onclick="showPage('events')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Events</button>
                         <button id="nav-bookings" onclick="showPage('bookings')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Table Bookings</button>
-                        <!-- Direct Link to Discord -->
                         <a href="https://discord.gg/fyRgpEdb" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Discord</a>
                         <button id="nav-website" onclick="showPage('website')" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Website</button>
                     </div>
                 </div>
                 
-                <!-- Gamer Zone Button -->
-                <div class="flex items-center">
-                    <button id="nav-login" onclick="showPage('login')" class="nav-link flex items-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-bold border border-blue-700 shadow-sm transition transform hover:-translate-y-0.5">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                <!-- Gamer Zone Button & Mobile Toggle -->
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <button id="nav-login" onclick="showPage('login')" class="nav-link flex items-center bg-blue-600 hover:bg-blue-500 text-white px-3 md:px-4 py-2 rounded-md text-xs md:text-sm font-bold border border-blue-700 shadow-sm transition transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 mr-1 md:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
                         Gamer Zone
                     </button>
+                    
+                    <!-- Mobile Hamburger Button -->
+                    <div class="flex items-center md:hidden">
+                        <button type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden absolute w-full bg-gray-900 border-b-4 border-blue-600 shadow-xl" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="showPage('home')" class="mobile-nav-link text-white bg-gray-800 block px-3 py-2 rounded-md text-base font-medium w-full text-left">Home</button>
+                <button onclick="showPage('weeklymeetups')" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">Weekly Meet Ups</button>
+                <button onclick="showPage('events')" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">Events</button>
+                <button onclick="showPage('bookings')" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">Table Bookings</button>
+                <a href="https://discord.gg/fyRgpEdb" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">Discord</a>
+                <button onclick="showPage('website')" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">Website</button>
             </div>
         </div>
     </nav>
 
     <!-- Main Content Area -->
     <main class="flex-grow max-w-7xl mx-auto w-full pb-12">
+
+        <!-- ================= USER LOGIN / ACCOUNT CREATION PAGE ================= -->
+        <div id="userlogin-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-16 animate-fade-in flex items-center justify-center min-h-[70vh]">
+            <div class="max-w-md w-full bg-white rounded-xl shadow-2xl border border-gray-200 p-8 text-center">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Welcome to Accent</h1>
+                <p class="text-gray-600 mb-8 text-sm">Create your free account to access table bookings, events, and the gamer zone.</p>
+                <form onsubmit="event.preventDefault(); createUserAccount();" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-900 mb-1">Full Name</label>
+                        <input type="text" id="auth-name" required placeholder="Enter your full name" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-900 mb-1">Email Address</label>
+                        <input type="email" id="auth-email" required placeholder="you@email.com" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+                    </div>
+                    <button type="submit" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow transition transform hover:-translate-y-0.5">
+                        Enter App
+                    </button>
+                </form>
+            </div>
+        </div>
         
         <!-- ================= HOME PAGE ================= -->
-        <div id="home-page" class="page-section animate-fade-in">
+        <div id="home-page" class="page-section hidden animate-fade-in">
             <!-- Welcoming Hero Banner with Dice Rolling Image -->
             <div class="relative bg-gray-900 rounded-b-xl shadow-xl overflow-hidden mb-8">
                 <img class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRwGBwC-fXxe1au364wM5Xzg7N3g5cSnD8l4JZTMsBuXgAUWgvCRthoQ4u2kFVf0AI_l0tOs6bf7TATulA" alt="Dice rolling across a green felt table">
@@ -66,6 +114,7 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <!-- Dashboard Widgets -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic User Booking Widget -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between hover:shadow-md transition">
                         <div>
                             <h2 class="text-gray-500 text-xs font-bold uppercase tracking-wider flex items-center mb-3">
@@ -73,12 +122,12 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></span >
                                 Your Next Booking
                             </h2>
-                            <p id="home-next-booking-type" class="text-xl font-bold text-gray-900">Warhammer 40k</p>
-                            <p id="home-next-booking-details" class="text-gray-600 text-sm mt-1">Table Top - 2 Players</p>
-                            <p id="home-next-booking-datetime" class="text-blue-600 text-sm mt-2 font-semibold">Saturday, 2:00 PM (3 Hours)</p>
+                            <p id="home-next-booking-type" class="text-xl font-bold text-gray-900">No Upcoming Bookings</p>
+                            <p id="home-next-booking-details" class="text-gray-600 text-sm mt-1">Book a table to see your schedule here.</p>
+                            <p id="home-next-booking-datetime" class="text-blue-600 text-sm mt-2 font-semibold"></p>
                         </div>
-                        <button onclick="showPage('bookings')" class="mt-5 w-full bg-white hover:bg-gray-50 text-gray-900 font-semibold py-2 px-4 border border-gray-300 rounded shadow-sm transition">
-                            Manage Booking
+                        <button id="home-manage-booking-btn" onclick="showPage('bookings')" class="mt-5 w-full bg-white hover:bg-gray-50 text-gray-900 font-semibold py-2 px-4 border border-gray-300 rounded shadow-sm transition hidden">
+                            Bookings Page
                         </button>
                     </div>
 
@@ -113,7 +162,7 @@
                     </div>
                 </div>
 
-                <!-- Pre-order Widget Container (Full Length) -->
+                <!-- Pre-order Widget Container -->
                 <div id="home-preorders-container" class="mt-6 space-y-4">
                     <!-- Populated by JS -->
                 </div>
@@ -557,7 +606,7 @@
                                 <input type="number" id="book-players" min="1" placeholder="e.g. 2" class="block w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-900 mb-1">Duration</label>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Duration</label>
                                 <select id="book-duration" class="block w-full pl-3 pr-10 py-3 text-base text-black border-gray-300 border rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
                                     <option value="1 Hour">1 Hour</option>
                                     <option value="2 Hours">2 Hours</option>
@@ -610,7 +659,7 @@
         <div id="stafflogin-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-16 animate-fade-in">
             <div class="max-w-md mx-auto text-center bg-white rounded-xl shadow-lg border border-gray-200 p-8">
                 <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Staff Portal</h1>
-                <p class="text-gray-600 mb-8 text-sm">Please log in to manage store events. (Demo Password: admin)</p>
+                <p class="text-gray-600 mb-8 text-sm">Please log in to manage store events. (Default Password: admin)</p>
                 <input type="password" id="staff-password" placeholder="Enter Password" class="w-full text-black border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-blue-500 focus:border-blue-500 mb-4 text-center">
                 <p id="staff-error" class="text-red-500 text-sm hidden mb-4 font-bold">Incorrect password.</p>
                 <button onclick="handleStaffLogin()" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-lg shadow transition">
@@ -623,7 +672,7 @@
         <div id="staffdashboard-page" class="page-section hidden px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl font-extrabold text-gray-900">Store Management</h1>
-                <button onclick="showPage('home')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded">Log Out</button>
+                <button onclick="showPage('home')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded">Exit Dashboard</button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -693,7 +742,7 @@
                     <ul id="admin-bookings-list" class="divide-y divide-gray-200 text-sm"></ul>
                 </div>
 
-                <!-- Registration History (Global Audit Log) -->
+                <!-- Registration History Log -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
                     <div class="flex justify-between items-center mb-4 border-b pb-2">
                         <h2 class="text-xl font-bold text-gray-900">Registration History Log (All Events)</h2>
@@ -727,33 +776,56 @@
                     <ul id="admin-preorder-list" class="divide-y divide-gray-200 text-sm"></ul>
                 </div>
 
+                <!-- Admin Security -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Admin Security</h2>
+                    <div class="mb-2 bg-gray-50 p-4 rounded border border-gray-200 flex flex-col sm:flex-row gap-4 items-end">
+                        <div class="w-full">
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Update Staff Password</label>
+                            <input type="password" id="admin-new-password" placeholder="New Password" class="w-full text-black border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-blue-500">
+                        </div>
+                        <button onclick="updateAdminPassword()" class="w-full sm:w-auto whitespace-nowrap bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded text-sm transition">Change Password</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
     </main>
 
-    <!-- Footer tied to the physical store -->
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
-            <div class="mb-4 sm:mb-0">
-                <span class="text-white font-bold text-lg uppercase tracking-wide">Accent Gaming</span>
-                <p class="text-sm mt-1">Dunfermline & Kirkcaldy</p>
+            <div class="mb-4 sm:mb-0 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start">
+                <img src="image_3fb224.jpg" alt="Accent Gaming Logo" class="h-12 w-12 mb-3 sm:mb-0 sm:mr-4 rounded-full bg-gray-800">
+                <div>
+                    <span class="text-white font-bold text-lg uppercase tracking-wide">Accent Gaming</span>
+                    <p class="text-sm mt-1">Dunfermline & Kirkcaldy</p>
+                </div>
             </div>
-            <div class="text-sm flex flex-col items-center sm:items-end">
-                <p class="mb-2">&copy; 2026 Accent Gaming Ltd.</p>
-                <button onclick="showPage('stafflogin')" class="text-xs text-gray-600 hover:text-gray-300 transition underline">Staff Portal</button>
+            <div class="text-sm flex flex-col items-center sm:items-end space-y-2 mt-4 sm:mt-0">
+                <p>&copy; 2026 Accent Gaming Ltd.</p>
+                <div class="flex space-x-4">
+                    <button onclick="showPage('stafflogin')" class="text-xs text-gray-600 hover:text-gray-300 transition underline">Staff Portal</button>
+                    <button onclick="logoutUser()" class="text-xs text-red-900 hover:text-red-500 transition underline font-bold">Sign Out App</button>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // Global Location States
         let currentWeeklyLoc = 'Dunfermline';
         let currentEventsLoc = 'Dunfermline';
 
         let preorderItemsData = [];
         let preorderRegsData = [];
+        let currentUser = null;
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
 
         function showPage(pageId) {
             const sections = document.querySelectorAll('.page-section');
@@ -761,6 +833,11 @@
                 section.classList.add('hidden');
             });
             document.getElementById(pageId + '-page').classList.remove('hidden');
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
 
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
@@ -773,6 +850,13 @@
                     }
                 }
             });
+
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.classList.remove('bg-gray-800', 'text-white');
+                link.classList.add('text-gray-300');
+            });
+
             const activeLink = document.getElementById('nav-' + pageId);
             if(activeLink) {
                 if(activeLink.id === 'nav-login') {
@@ -802,10 +886,6 @@
             renderAllEvents();
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* STAFF PORTAL LOGIC                                                         */
-        /* -------------------------------------------------------------------------- */
-
         let weeklyEventsData = [];
         let specialEventsData = [];
         let tableBookingsData = [];
@@ -819,7 +899,52 @@
             return d.getTime();
         }
 
+        function renderUserNextBooking() {
+            if (!currentUser) return;
+            
+            const userBookings = tableBookingsData.filter(b => b.email === currentUser.email);
+            
+            const typeEl = document.getElementById('home-next-booking-type');
+            const detailsEl = document.getElementById('home-next-booking-details');
+            const datetimeEl = document.getElementById('home-next-booking-datetime');
+            const btnEl = document.getElementById('home-manage-booking-btn');
+            
+            if (userBookings.length > 0) {
+                userBookings.sort((a, b) => new Date(a.date + ' ' + a.time) - new Date(b.date + ' ' + b.time));
+                const next = userBookings[userBookings.length - 1]; 
+                
+                typeEl.innerText = next.type;
+                let opponentText = next.opponent ? `vs ${next.opponent} ` : '';
+                detailsEl.innerText = `${next.location} - ${next.players} Players ${opponentText}`;
+                datetimeEl.innerText = `${next.date} at ${next.time} (${next.duration})`;
+                btnEl.classList.remove('hidden');
+            } else {
+                typeEl.innerText = "No Upcoming Bookings";
+                detailsEl.innerText = "Book a table to see your schedule here.";
+                datetimeEl.innerText = "";
+                btnEl.classList.add('hidden');
+            }
+        }
+
         window.onload = function() {
+            // User Auth Check
+            const savedUser = localStorage.getItem('accent_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                document.getElementById('main-nav').classList.remove('hidden');
+                
+                if(document.getElementById('reg-name')) document.getElementById('reg-name').value = currentUser.name;
+                if(document.getElementById('reg-email')) document.getElementById('reg-email').value = currentUser.email;
+                if(document.getElementById('book-email')) document.getElementById('book-email').value = currentUser.email;
+                if(document.getElementById('preorder-name')) document.getElementById('preorder-name').value = currentUser.name;
+                if(document.getElementById('preorder-email')) document.getElementById('preorder-email').value = currentUser.email;
+                
+                showPage('home');
+            } else {
+                document.getElementById('main-nav').classList.add('hidden');
+                showPage('userlogin');
+            }
+
             const savedWeekly = localStorage.getItem('accent_weekly_events');
             if (savedWeekly) {
                 weeklyEventsData = JSON.parse(savedWeekly);
@@ -888,11 +1013,42 @@
             renderCardControls(); 
             calculateMathhammer();
             renderPreorders();
+            renderUserNextBooking();
         }
 
+        // --- ACCOUNT MANAGEMENT ---
+        function createUserAccount() {
+            const name = document.getElementById('auth-name').value;
+            const email = document.getElementById('auth-email').value;
+            if(name && email) {
+                currentUser = { name, email };
+                localStorage.setItem('accent_user', JSON.stringify(currentUser));
+                document.getElementById('main-nav').classList.remove('hidden');
+                
+                if(document.getElementById('reg-name')) document.getElementById('reg-name').value = name;
+                if(document.getElementById('reg-email')) document.getElementById('reg-email').value = email;
+                if(document.getElementById('book-email')) document.getElementById('book-email').value = email;
+                if(document.getElementById('preorder-name')) document.getElementById('preorder-name').value = name;
+                if(document.getElementById('preorder-email')) document.getElementById('preorder-email').value = email;
+
+                renderUserNextBooking();
+                showPage('home');
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('accent_user');
+            currentUser = null;
+            document.getElementById('main-nav').classList.add('hidden');
+            showPage('userlogin');
+        }
+
+        // --- ADMIN LOGIN / DASHBOARD ---
         function handleStaffLogin() {
             const pass = document.getElementById('staff-password').value;
-            if (pass === 'admin') {
+            const savedPass = localStorage.getItem('accent_admin_password') || 'admin';
+            
+            if (pass === savedPass) {
                 document.getElementById('staff-error').classList.add('hidden');
                 document.getElementById('staff-password').value = '';
                 showPage('staffdashboard');
@@ -905,6 +1061,14 @@
             }
         }
 
+        function updateAdminPassword() {
+            const newPass = document.getElementById('admin-new-password').value;
+            if(!newPass) return alert("Please enter a new password.");
+            localStorage.setItem('accent_admin_password', newPass);
+            alert("Admin password updated successfully.");
+            document.getElementById('admin-new-password').value = '';
+        }
+
         function saveData() {
             localStorage.setItem('accent_weekly_events', JSON.stringify(weeklyEventsData));
             localStorage.setItem('accent_special_events', JSON.stringify(specialEventsData));
@@ -914,6 +1078,7 @@
             renderAdminLists();
             renderAdminBookings();
             renderAdminRegistrations();
+            renderUserNextBooking();
         }
 
         function addWeeklyEvent() {
@@ -985,18 +1150,13 @@
 
             tableBookingsData.push({ location, type, players, duration, date, time, email, opponent });
             saveData();
-            
-            document.getElementById('home-next-booking-type').innerText = type;
-            let opponentText = opponent ? `vs ${opponent} ` : '';
-            document.getElementById('home-next-booking-details').innerText = `${location} - ${players} Players ${opponentText}`;
-            document.getElementById('home-next-booking-datetime').innerText = `${date} at ${time} (${duration})`;
 
             alert(`Reservation Confirmed for ${location}! It has been sent to the Staff Portal.`);
             
             document.getElementById('book-players').value = '';
             document.getElementById('book-date').value = '';
             document.getElementById('book-time').value = '';
-            document.getElementById('book-email').value = '';
+            document.getElementById('book-email').value = currentUser ? currentUser.email : '';
             document.getElementById('book-opponent').value = '';
 
             showPage('home');
@@ -1081,8 +1241,6 @@
             saveData();
             
             alert(`Registration Confirmed for ${ev.location}! We look forward to seeing you.`);
-            document.getElementById('reg-name').value = '';
-            document.getElementById('reg-email').value = '';
             
             showPage(type === 'special' ? 'events' : 'weeklymeetups');
         }
@@ -1265,10 +1423,6 @@
             }
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* PRE-ORDER LOGIC                                                  */
-        /* -------------------------------------------------------------------------- */
-        
         function renderPreorders() {
             const container = document.getElementById('home-preorders-container');
             if(!container) return;
@@ -1386,8 +1540,6 @@
             savePreorderData();
             
             alert("Interest Registered! We'll be in touch when it arrives.");
-            document.getElementById('preorder-name').value = '';
-            document.getElementById('preorder-email').value = '';
             
             showPage('home');
         }
@@ -1399,10 +1551,6 @@
             }
         }
 
-        /* -------------------------------------------------------------------------- */
-        /* CARD SCORING TRACKER                                             */
-        /* -------------------------------------------------------------------------- */
-        
         let cardScores = { p1: 20, p2: 20 };
         let currentCardSystem = 'mtg20';
 
@@ -1466,11 +1614,6 @@
             else updateCardSystem();
         }
 
-
-        /* -------------------------------------------------------------------------- */
-        /* ACCENT DAMAGE MATRIX CALCULATOR             */
-        /* -------------------------------------------------------------------------- */
-        
         function calculateMathhammer() {
             const attacksBase = parseFloat(document.getElementById('mh-attacks').value) || 0;
             const bs = parseInt(document.getElementById('mh-bs').value) || 3;
@@ -1499,7 +1642,6 @@
             const inv = parseInt(document.getElementById('mh-invuln').value) || 7;
             const fnp = parseInt(document.getElementById('mh-fnp').value) || 7;
 
-            // TARGET ABILITIES
             const targetCover = document.getElementById('mh-target-cover').checked;
             const targetSmoke = document.getElementById('mh-target-smoke').checked;
             const targetStealth = document.getElementById('mh-target-stealth').checked;
@@ -1510,13 +1652,12 @@
             ap += apReduction;
             if (ap > 0) ap = 0;
 
-            // HIT PHASE
             let hitModifier = 0;
             if (minus1hit) hitModifier -= 1;
             if (targetCover) hitModifier -= 1;
             if (targetSmoke) hitModifier -= 1;
             if (targetStealth) hitModifier -= 1;
-            if (hitModifier < -1) hitModifier = -1; // cap at -1
+            if (hitModifier < -1) hitModifier = -1; 
 
             let hitTarget = bs - hitModifier; 
             if (hitTarget > 6) hitTarget = 6;
@@ -1557,7 +1698,6 @@
 
             const totalHitsDisplay = autoWounds + hitsToWound;
 
-            // WOUND PHASE
             let woundTarget = 4;
             if (str >= tgh * 2) woundTarget = 2;
             else if (str > tgh) woundTarget = 3;
@@ -1603,14 +1743,12 @@
 
             const totalWoundsDisplay = savesToTake + mortalWounds;
 
-            // SAVE PHASE
             let bestSave = Math.min(sv - ap, inv);
             let saveChance = 0;
             if (bestSave <= 6) saveChance = Math.max(0, 7 - bestSave) / 6.0;
 
             const failedSaves = savesToTake * (1 - saveChance);
 
-            // DAMAGE PHASE
             let rawDamage = (failedSaves * dmg) + (mortalWounds * dmg); 
             let fnpPassChance = 0;
             if (fnp <= 6) fnpPassChance = Math.max(0, 7 - fnp) / 6.0;
@@ -1622,7 +1760,6 @@
             document.getElementById('mh-res-failed').innerText = failedSaves.toFixed(2);
             document.getElementById('mh-res-damage').innerText = finalDamage.toFixed(2);
         }
-
     </script>
     <style>
         .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
