@@ -1,7 +1,7 @@
 {
   "name": "Accent Gaming",
   "short_name": "Accent",
-  "start_url": "/",
+  "start_url": "/Accent-Gaming-App/"
   "display": "standalone",
   "background_color": "#111827",
   "theme_color": "#2563EB",
