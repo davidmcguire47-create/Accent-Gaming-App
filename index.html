@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accent Gaming - Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+   <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/Accent-Gaming-App/sw.js');
+    });
+  }
+</script>
     
     <!-- PWA Requirements -->
     <link rel="manifest" href="manifest.json">
