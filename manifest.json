@@ -1,16 +1,18 @@
 {
-  "name": "Accent Gaming",
-  "short_name": "Accent",
-  "start_url": "/Accent-Gaming-App/"
+  "name": "Accent Gaming Portal",
+  "short_name": "Accent Gaming",
+  "start_url": "/Accent-Gaming-App/",
+  "scope": "/Accent-Gaming-App/",
   "display": "standalone",
   "background_color": "#111827",
   "theme_color": "#2563EB",
-  "description": "Tabletop gaming hub for Dunfermline and Kirkcaldy.",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/806/806055.png",
+      "src": "image_3fb224.jpg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ]
 }
