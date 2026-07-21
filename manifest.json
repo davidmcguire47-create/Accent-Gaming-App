@@ -1,16 +1,11 @@
 {
-  "name": "Accent Gaming",
-  "short_name": "Accent Gaming",
-  "start_url": "./index.html",
+  "background_color": "#ffffff",
+  "dir": "ltr",
   "display": "standalone",
-  "background_color": "#002b7f",
-  "theme_color": "#002b7f",
-  "icons": [
-    {
-      "src": "launchericon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
+  "name": "davidmcguire47-create.github",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "davidmcguire47-create.github",
+  "start_url": "/",
+  "theme_color": "#ffffff"
 }
