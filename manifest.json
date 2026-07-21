@@ -1,7 +1,7 @@
 {
   "name": "Accent Gaming",
   "short_name": "Accent Gaming",
-  "description": "The official Accent Gaming mobile application."
+  "description": "The official Accent Gaming mobile application.",
   "start_url": "/Accent-Gaming-App/index.html",
   "scope": "/Accent-Gaming-App/",
   "display": "standalone",
